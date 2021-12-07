@@ -14,18 +14,40 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD": {
-      const updatedTotalAmount =
-        state.totalAmount + action.payload.price * action.payload.amount;
+      let updatedItems;
+      const index = state.items.findIndex((el) => el.id === action.item.id);
+      if (index === -1) {
+        updatedItems = [...state.items, action.item];
+      } else {
+        updatedItems = [...state.items];
+        updatedItems[index].amount += action.item.amount;
+      }
+
       return {
-        items: [...state.items, action.payload],
-        totalAmount: updatedTotalAmount,
+        items: updatedItems,
+        totalAmount: state.totalAmount + action.item.price * action.item.amount,
+      };
+    }
+    case "REMOVE": {
+      let updatedItems;
+      const index = state.items.findIndex((el) => el.id === action.id);
+      if (state.items[index].amount === 1) {
+        updatedItems = state.items.filter((el) => el.id !== action.id);
+      } else {
+        updatedItems = [...state.items];
+        updatedItems[index].amount -= 1;
+      }
+
+      return {
+        items: updatedItems,
+        totalAmount: state.totalAmount - state.items[index].price,
       };
     }
     default:
       return { ...state };
   }
 
-  // using If ELSE and concat()
+  // using if else and concat()
   // if (action.type === "ADD") {
   //   const updatedItems = state.items.concat(action.payload);
   //   const updatedTotalAmount =
@@ -40,9 +62,11 @@ const reducer = (state, action) => {
 export const CartProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const addItemToCartHandler = (item) => {
-    dispatch({ type: "ADD", payload: item });
+    dispatch({ type: "ADD", item: item });
   };
-  const removeItemToCartHandler = (item) => {};
+  const removeItemToCartHandler = (id) => {
+    dispatch({ type: "REMOVE", id: id });
+  };
   return (
     <CartContext.Provider
       value={{
