@@ -1,3 +1,3 @@
-### Udemy Course: Food Ordering App by [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)
+### Udemy Course: Food Ordering App by [Maximilian Schwarzmüller](https://www.udemy.com/course/react-the-complete-guide-incl-redux/)
 
-- Practicing useReducer/Context
+- Practicing making a cart with useReducer/useContext
