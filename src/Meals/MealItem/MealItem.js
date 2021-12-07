@@ -13,6 +13,7 @@ export default function (props) {
       price: props.price,
     });
   };
+
   return (
     <li className={classes.meal}>
       <div>
