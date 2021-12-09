@@ -32,9 +32,7 @@ export default function AvailableMeals() {
   const [meals, setMeals] = useState([]);
   useEffect(() => {
     const fetchMeals = async () => {
-      const response = await fetch(
-        "https://reducer-store-default-rtdb.firebaseio.com/meals.json"
-      );
+      const response = await fetch(process.env.REACT_APP_API_URL);
       const responseData = await response.json();
       const loadedMeals = [];
       for (const key in responseData) {
