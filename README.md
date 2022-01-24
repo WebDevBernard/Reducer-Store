@@ -5,7 +5,7 @@
 ## About
 
 - Simple food ordering app using useReducer/Context API to manage cart state.
-- Tutorial by [Maximilian Schwarzmüller Udemy course](https://www.udemy.com/course/react-the-complete-guide-incl-redux/)
+- Tutorial by [Maximilian Schwarzmüller](https://www.udemy.com/course/react-the-complete-guide-incl-redux/)
 - [Live Demo](https://reducer-store.vercel.app/)
 
 ## Run Locally
